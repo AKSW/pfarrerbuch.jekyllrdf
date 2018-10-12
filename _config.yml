@@ -1,12 +1,19 @@
 # Site settings
-title: Your awesome title
-email: your-email@domain.com
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
-baseurl: ""
-url: "http://yourdomain.com"
-twitter_username: jekyllrb
-github_username:  jekyll
+title: Pfarrerbuch Sachsen
+baseurl: "/sachsen"
+url: "http://pfarrerbuch.comiles.eu"
 
 # Build settings
 markdown: kramdown
-permalink: pretty
+#permalink: pretty
+
+plugins:
+    - jekyll-rdf
+
+jekyll_rdf:
+    path: "_data/sachsen.ttl"
+    class_template_mappings:
+        "http://xmlns.com/foaf/0.1/Person": "person.html"
+    instance_template_mappings:
+        "http://pfarrerbuch.comiles.eu/sachsen/": "index.html"
+        "http://pfarrerbuch.comiles.eu/sachsen/home": "index.html"
