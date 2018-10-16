@@ -1,7 +1,7 @@
 # Site settings
 title: Pfarrerbuch Sachsen
 baseurl: "/sachsen"
-url: "http://pfarrerbuch.comiles.eu"
+url: "http://pfarrerbuch.aksw.org"
 
 # Build settings
 markdown: kramdown
@@ -12,8 +12,12 @@ plugins:
 
 jekyll_rdf:
     path: "_data/sachsen.ttl"
+    restriction: "SELECT ?resourceUri WHERE { ?resourceUri ?p ?o . FILTER regex(str(?resourceUri), 'http://pfarrerbuch.aksw.org/sachsen')  }"
+    default_template: resource
     class_template_mappings:
-        "http://xmlns.com/foaf/0.1/Person": "person.html"
+        "http://xmlns.com/foaf/0.1/Person": "person"
+        "http://purl.org/voc/hp/Place": "ort"
+        "http://purl.org/voc/hp/Position": "stelle"
     instance_template_mappings:
-        "http://pfarrerbuch.comiles.eu/sachsen/": "index.html"
-        "http://pfarrerbuch.comiles.eu/sachsen/home": "index.html"
+        "http://pfarrerbuch.aksw.org/sachsen/": "home"
+        "http://pfarrerbuch.aksw.org/sachsen/home": "home"

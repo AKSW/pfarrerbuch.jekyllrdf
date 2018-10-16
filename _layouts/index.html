@@ -1,8 +1,0 @@
-<h1>{{ page.rdf | rdf_property: "<http://www.w3.org/2000/01/rdf-schema#label>"}}</h1>
-{% assign results = nil | sparql_query: "select ?person {?person a <http://xmlns.com/foaf/0.1/Person>}" %}
-Persons:
-<ul>
-    {% for result in results %}
-      <li><a class="page-link" href="{{ result.person.page_url | prepend: site.baseurl }}">{{ result.person.iri }}</a></li>
-    {% endfor %}
-</ul>

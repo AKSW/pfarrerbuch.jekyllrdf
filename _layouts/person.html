@@ -1,13 +1,17 @@
+---
+layout: default
+rdf_prefix_path: _data/prefixes.sparql
+---
 This is a Person
 
-<h1>{{ page.rdf | rdf_property: "<http://xmlns.com/foaf/0.1/name>" }}</h1>
+<h1>{{ page.rdf | rdf_property: "foaf:name" }}</h1>
 
 renderpath: {{ page.rdf.render_path }}
 pageurl: {{ page.rdf.page_url }}
 
 <dl>
     <dd>Vorname:</dd>
-    <di>{{ page.rdf | rdf_property: "<http://xmlns.com/foaf/0.1/firstName>" }}</di>
+    <di>{{ page.rdf | rdf_property: "foaf:firstName" }}</di>
     <dd>Nachname:</dd>
-    <di>{{ page.rdf | rdf_property: "<http://xmlns.com/foaf/0.1/lastName>" }}</di>
+    <di>{{ page.rdf | rdf_property: "foaf:lastName" }}</di>
 </dl>
