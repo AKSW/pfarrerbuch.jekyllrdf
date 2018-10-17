@@ -5,3 +5,19 @@ rdf_prefix_path: _data/prefixes.sparql
 This is a Place
 
 <h1>{{ page.rdf | rdf_property: "rdfs:label" }}</h1>
+
+<h2>Stellen</h2>
+<div>
+{% assign positions = page.rdf | rdf_inverse_property: "hp:place", true %}
+{% for position in positions %}
+<div>
+<a href="{{ position.page_url | append: ".html" }}">{{ position | rdf_property: "hp:positionDesignation" }}</a>
+{% assign pastors = position | rdf_inverse_property: "hp:hasPosition", true %}
+<ul>
+{% for pastor in pastors %}
+<li><a href="{{ pastor.page_url | append: ".html" }}">{{ pastor | rdf_property: "foaf:name" }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endfor %}
+</div>

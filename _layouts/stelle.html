@@ -5,3 +5,12 @@ rdf_prefix_path: _data/prefixes.sparql
 This is a Position
 
 <h1>{{ page.rdf | rdf_property: "rdfs:label" }}</h1>
+
+<div>
+{% assign pastors = page.rdf | rdf_inverse_property: "hp:hasPosition", true %}
+{% for pastor in pastors %}
+<div>
+<a href="{{ pastor.page_url | append: ".html" }}">{{ pastor | rdf_property: "foaf:name" }}</a>
+</div>
+{% endfor %}
+</div>

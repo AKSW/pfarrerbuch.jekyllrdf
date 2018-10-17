@@ -10,8 +10,30 @@ renderpath: {{ page.rdf.render_path }}
 pageurl: {{ page.rdf.page_url }}
 
 <dl>
-    <dd>Vorname:</dd>
-    <di>{{ page.rdf | rdf_property: "foaf:firstName" }}</di>
-    <dd>Nachname:</dd>
-    <di>{{ page.rdf | rdf_property: "foaf:lastName" }}</di>
+    <dt>Vorname:</dt>
+    <dd>{{ page.rdf | rdf_property: "foaf:firstName" }}</dd>
+    <dt>Nachname:</dt>
+    <dd>{{ page.rdf | rdf_property: "foaf:lastName" }}</dd>
+    <dt>Geburtsdatum:</dt>
+    <dd>{{ page.rdf | rdf_property: "hp:birthDate" }}</dd>
 </dl>
+
+<h2>Stellen</h2>
+<div>
+{% assign positions = page.rdf | rdf_property: "hp:hasPosition", nil, true %}
+{% for position in positions %}
+<div>
+{% assign position_place = position | rdf_property: "hp:place" %}
+<a href="{{ position.page_url | append: ".html" }}">{{ position | rdf_property: "hp:positionDesignation" }}</a> in
+<a href="{{ position_place.page_url | append: ".html" }}">{{ position_place | rdf_property: "rdfs:label" }}</a>
+</div>
+{% endfor %}
+</div>
+
+<div>
+  {{ page.rdf | rdf_property: "rdfs:comment" }}
+</div>
+
+<div>
+  {{ page.rdf | rdf_property: "hp:source" }}
+</div>
