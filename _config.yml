@@ -11,7 +11,7 @@ plugins:
     - jekyll-rdf
 
 jekyll_rdf:
-    path: "_data/sachsen.ttl"
+    path: "sachsen.nt"
     restriction: "SELECT ?resourceUri WHERE { ?resourceUri ?p ?o . FILTER regex(str(?resourceUri), 'http://pfarrerbuch.aksw.org/sachsen')  }"
     default_template: resource
     class_template_mappings:
