@@ -2,16 +2,20 @@
 layout: default
 rdf_prefix_path: _data/prefixes.sparql
 ---
-<h1>{{ page.rdf | rdf_property: "rdfs:label"}}</h1>
+
+<div>
+  <strong>Bemerkung:</strong>
+  Die aktuell verfügbare Ansicht ist lediglich ein Ausschnitt unserer Datenbank und dient zu Demonstrationszwecken.
+</div>
+
+<div class="card">
+  <div class="card-header">{{ "<http://pfarrerbuch.aksw.org/About>" | rdf_property: "rdfs:label", "de" }}</div>
+  <div class="card-body">
+  {{ "<http://pfarrerbuch.aksw.org/About>" | rdf_property: "site:content" }}
+  </div>
+</div>
 
 {% assign results = nil | sparql_query: "select ?person {?person a foaf:Person}" %}
-
-<h2>Personsen</h2>
-<ul>
-    {% for result in results %}
-      <li><a class="page-link" href="{{ result.person.page_url | prepend: site.baseurl }}">{{ result.person.iri }}</a></li>
-    {% endfor %}
-</ul>
 
 
 <h2>Orte</h2>
@@ -28,12 +32,14 @@ select ?ort ?label {
 {% assign ort = placeResult.ort %}
 {% assign ortsname = placeResult.label %}
 <li>
-<a href="{{ ort.page_url | prepend: site.baseurl | append: ".html" }}">{{ ortsname }}</a>
+<a class="page-link" href="{{ ort.render_path | prepend: site.baseurl }}">{{ ortsname }}</a>
 </li>
 {% endfor %}
 </ul>
 
-<div>
-  <strong>Bemerkung:</strong>
-  Die aktuell verfügbare Ansicht ist lediglich ein Ausschnitt unserer Datenbank und dient zu Demonstrationszwecken.
-</div>
+<h2>Personen</h2>
+<ul>
+    {% for result in results %}
+      <li><a class="page-link" href="{{ result.person.render_path | prepend: site.baseurl }}">{{ result.person | rdf_property: "rdfs:label" }}</a></li>
+    {% endfor %}
+</ul>
