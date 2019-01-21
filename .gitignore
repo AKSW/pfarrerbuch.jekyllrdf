@@ -2,3 +2,6 @@ Gemfile.lock
 .vendor
 .bundle
 _site
+node_modules
+package-lock.json
+dist

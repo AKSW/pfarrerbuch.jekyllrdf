@@ -1,5 +1,5 @@
 {
-  "name": "Pfarrerbuch Sachsen Jekyll Page",
+  "name": "Pfarrerbuch-Sachsen-Jekyll-Page",
   "version": "1.0.0",
   "description": "",
   "private": "true",
@@ -18,7 +18,7 @@
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
     "sass-loader": "^7.1.0",
-    "webpack": "^4.28.4"
+    "webpack": "^4.29.0"
   },
   "devDependencies": {
     "css-loader": "^2.1.0",

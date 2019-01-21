@@ -10,7 +10,7 @@ markdown: kramdown
 plugins:
     - jekyll-rdf
 
-exclude: ["Gemfile", "Gemfile.lock", "package.json", "webpack.config.js", "src"]
+exclude: ["Gemfile", "Gemfile.lock", "package.json", "package-lock.json", "node_modules", "webpack.config.js", "src"]
 
 jekyll_rdf:
     baseiri: "http://pfarrerbuch.aksw.org/sachsen"
