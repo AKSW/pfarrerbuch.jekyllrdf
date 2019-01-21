@@ -1,0 +1,28 @@
+{
+  "name": "Pfarrerbuch Sachsen Jekyll Page",
+  "version": "1.0.0",
+  "description": "",
+  "private": "true",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Natanael Arndt <arndt@informatik.uni-leipzig.de>",
+  "license": "GPL",
+  "dependencies": {
+    "bootstrap": "^4.2.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "jquery": "^3.3.1",
+    "node-sass": "^4.11.0",
+    "popper.js": "^1.14.6",
+    "postcss-loader": "^3.0.0",
+    "precss": "^4.0.0",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.28.4"
+  },
+  "devDependencies": {
+    "css-loader": "^2.1.0",
+    "style-loader": "^0.23.1",
+    "webpack-cli": "^3.2.1"
+  }
+}
