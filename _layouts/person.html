@@ -6,16 +6,13 @@ This is a Person
 
 <h1>{{ page.rdf | rdf_property: "foaf:name" }}</h1>
 
-renderpath: {{ page.rdf.render_path }}
-pageurl: {{ page.rdf.page_url }}
-
 <dl>
     <dt>Vorname:</dt>
     <dd>{{ page.rdf | rdf_property: "foaf:firstName" }}</dd>
     <dt>Nachname:</dt>
     <dd>{{ page.rdf | rdf_property: "foaf:lastName" }}</dd>
     <dt>Geburtsdatum:</dt>
-    <dd>{{ page.rdf | rdf_property: "hp:birthDate" }}</dd>
+    <dd>{{ page.rdf | rdf_property: "hp:birthDate" | date: "%Y-%m-%d" }}</dd>
 </dl>
 
 <h2>Stellen</h2>
@@ -23,16 +20,17 @@ pageurl: {{ page.rdf.page_url }}
 {% assign positions = page.rdf | rdf_property: "hp:hasPosition", nil, true %}
 {% for position in positions %}
 <div>
+  <span>{{ position }}</span>
 {% assign position_place = position | rdf_property: "hp:place" %}
-<a href="{{ position.page_url | prepend: site.baseurl | append: ".html" }}">{{ position | rdf_property: "hp:positionDesignation" }}</a> in
+<a href="{{ position.page_url | prepend: site.baseurl | append: ".html" }}">{{ position | rdf_property: "hp:positionDesignation" }}</a>
+{% if position_place %}
+in
 <a href="{{ position_place.page_url | prepend: site.baseurl | append: ".html" }}">{{ position_place | rdf_property: "rdfs:label" }}</a>
+{% endif %}
 </div>
 {% endfor %}
 </div>
 
-<div>
-  {{ page.rdf | rdf_property: "rdfs:comment" }}
-</div>
 
 <div>
   {{ page.rdf | rdf_property: "hp:source" }}
