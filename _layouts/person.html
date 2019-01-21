@@ -24,8 +24,8 @@ pageurl: {{ page.rdf.page_url }}
 {% for position in positions %}
 <div>
 {% assign position_place = position | rdf_property: "hp:place" %}
-<a href="{{ position.page_url | append: ".html" }}">{{ position | rdf_property: "hp:positionDesignation" }}</a> in
-<a href="{{ position_place.page_url | append: ".html" }}">{{ position_place | rdf_property: "rdfs:label" }}</a>
+<a href="{{ position.page_url | prepend: site.baseurl | append: ".html" }}">{{ position | rdf_property: "hp:positionDesignation" }}</a> in
+<a href="{{ position_place.page_url | prepend: site.baseurl | append: ".html" }}">{{ position_place | rdf_property: "rdfs:label" }}</a>
 </div>
 {% endfor %}
 </div>

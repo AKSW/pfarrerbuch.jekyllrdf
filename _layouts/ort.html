@@ -11,11 +11,11 @@ This is a Place
 {% assign positions = page.rdf | rdf_inverse_property: "hp:place", true %}
 {% for position in positions %}
 <div>
-<a href="{{ position.page_url | append: ".html" }}">{{ position | rdf_property: "hp:positionDesignation" }}</a>
+<a href="{{ position.page_url | prepend: site.baseurl | append: ".html" }}">{{ position | rdf_property: "hp:positionDesignation" }}</a>
 {% assign pastors = position | rdf_inverse_property: "hp:hasPosition", true %}
 <ul>
 {% for pastor in pastors %}
-<li><a href="{{ pastor.page_url | append: ".html" }}">{{ pastor | rdf_property: "foaf:name" }}</a></li>
+<li><a href="{{ pastor.page_url | prepend: site.baseurl | append: ".html" }}">{{ pastor | rdf_property: "foaf:name" }}</a></li>
 {% endfor %}
 </ul>
 </div>
