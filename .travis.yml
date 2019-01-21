@@ -11,7 +11,7 @@ before_script:
   - npm install npm -g
 
 script:
-  - npm install --dev
+  - npm install
   - npx webpack
   - bundle install
   - bundle exec jekyll build
