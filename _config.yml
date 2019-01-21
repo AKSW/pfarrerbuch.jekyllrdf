@@ -1,7 +1,7 @@
 # Site settings
 title: Pfarrerbuch Sachsen
-baseurl: "/sachsen"
-url: "http://pfarrerbuch.aksw.org"
+baseurl: "/pfarrerbuch.jekyllrdf"
+url: "https://aksw.github.io"
 
 # Build settings
 markdown: kramdown
@@ -11,6 +11,7 @@ plugins:
     - jekyll-rdf
 
 jekyll_rdf:
+    baseiri: "http://pfarrerbuch.aksw.org/sachsen"
     path: "sachsen.nt"
     restriction: "SELECT ?resourceUri WHERE { ?resourceUri ?p ?o . FILTER regex(str(?resourceUri), 'http://pfarrerbuch.aksw.org/sachsen')  }"
     default_template: resource
