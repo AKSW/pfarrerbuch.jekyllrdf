@@ -2,9 +2,8 @@
 layout: default
 rdf_prefix_path: _data/prefixes.sparql
 ---
-This is a Position
 
-<h1>{{ page.rdf | rdf_property: "rdfs:label" }}</h1>
+<h2>{{ page.rdf | rdf_property: "rdfs:label" }}</h2>
 
 <div>
 {% assign pastors = page.rdf | rdf_inverse_property: "hp:hasPosition", true %}

@@ -3,18 +3,18 @@
 
   {% include head.html %}
 
-    <body>
+  <body>
 
-    {% include header.html %}
+    <div class="container">
+      {% include header.html %}
 
-    <div class="page-content">
-      <div class="wrap">
-      {{ content }}
-      </div>
+      <main role="main">
+        {{ content }}
+      </main>
+
+      {% include footer.html %}
     </div>
 
-    {% include footer.html %}
-
-    <script src="/dist/main.js" type="text/javascript"></script>
-    </body>
+    <script src="{{ "/dist/main.js" | prepend: site.baseurl }}" type="text/javascript"></script>
+  </body>
 </html>

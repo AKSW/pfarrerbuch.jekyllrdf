@@ -4,34 +4,68 @@ rdf_prefix_path: _data/prefixes.sparql
 ---
 This is a Person
 
-<h1>{{ page.rdf | rdf_property: "foaf:name" }}</h1>
+<h2>{{ page.rdf | rdf_property: "foaf:name" }}</h2>
 
 <dl>
     <dt>Vorname:</dt>
     <dd>{{ page.rdf | rdf_property: "foaf:firstName" }}</dd>
     <dt>Nachname:</dt>
     <dd>{{ page.rdf | rdf_property: "foaf:lastName" }}</dd>
-    <dt>Geburtsdatum:</dt>
-    <dd>{{ page.rdf | rdf_property: "hp:birthDate" | date: "%Y-%m-%d" }}</dd>
+    <dt>Namensvariante:</dt>
+    <dd>{{ page.rdf | rdf_property: "hp:nameVariant" }}</dd>
+    <dt>Mutter:</dt>
+    <dd>{{ page.rdf | rdf_property: "hp:mother" }}</dd>
+    <dt>Vater:</dt>
+    <dd>{{ page.rdf | rdf_property: "hp:father" }}</dd>
+    <dt>Geburt:</dt>
+    <dd>{{ page.rdf | rdf_property: "hp:birthDate" | date: "%Y-%m-%d" }} in <em>{{ page.rdf | rdf_property: "hp:birthPlace" }}</em></dd>
+    <dt>Taufe:</dt>
+    <dd>{{ page.rdf | rdf_property: "hp:dayOfBabtism" | date: "%Y-%m-%d" }} in <em>{{ page.rdf | rdf_property: "hp:placeOfBabtism" }}</em></dd>
+    <dt>Ordination:</dt>
+    <dd>{{ page.rdf | rdf_property: "hp:dateOfOrdination" | date: "%Y-%m-%d" }} in <em>{{ page.rdf | rdf_property: "hp:placeOfOrdination" }}</em></dd>
+    <dt>Emeritierung:</dt>
+    <dd>{{ page.rdf | rdf_property: "hp:dateOfRetirement" | date: "%Y-%m-%d" }}</dd>
+    <dt>Tod:</dt>
+    <dd>{{ page.rdf | rdf_property: "hp:dateOfDeath" | date: "%Y-%m-%d" }} in <em>{{ page.rdf | rdf_property: "hp:placeOfDeath" }}</em></dd>
+    <dt>Bestattung:</dt>
+    <dd>{{ page.rdf | rdf_property: "hp:dayOfFuneral" | date: "%Y-%m-%d" }} in <em>{{ page.rdf | rdf_property: "hp:burialPlace" }}</em></dd>
 </dl>
 
-<h2>Stellen</h2>
+<h3>Stellen</h3>
 <div>
 {% assign positions = page.rdf | rdf_property: "hp:hasPosition", nil, true %}
 {% for position in positions %}
-<div>
-  <span>{{ position }}</span>
+<div class="card">
+{% assign position_reif = position | rdf_inverse_property: "rdf:object" %}
 {% assign position_place = position | rdf_property: "hp:place" %}
-<a href="{{ position.page_url | prepend: site.baseurl | append: ".html" }}">{{ position | rdf_property: "hp:positionDesignation" }}</a>
 {% if position_place %}
+<div class="card-body">
+von: {{ position_reif | rdf_property: "hp:start" | date: "%Y-%m-%d" }}
+bis: {{ position_reif | rdf_property: "hp:end" | date: "%Y-%m-%d" }}
+</div>
+<div class="card-body">
+<a href="{{ position.render_path | prepend: site.baseurl }}">{{ position | rdf_property: "hp:positionDesignation" }}</a>
 in
-<a href="{{ position_place.page_url | prepend: site.baseurl | append: ".html" }}">{{ position_place | rdf_property: "rdfs:label" }}</a>
+<a href="{{ position_place.render_path | prepend: site.baseurl }}">{{ position_place | rdf_property: "rdfs:label" }}</a>
+</div>
+{% assign comment = position_reif | rdf_property: "rdfs:comment" %}
+{% if comment %}
+<div class="card-body">
+<em>{{ comment }}</em>
+</div>
+{% endif %}
+{% else %}
+<div class="card-body text-muted">
+<em>{{ position }}</em>
+</div>
 {% endif %}
 </div>
 {% endfor %}
 </div>
 
-
-<div>
+<footer class="card sources">
+  <div class="card-header">Quellen und Literatur</div>
+  <div class="card-body">
   {{ page.rdf | rdf_property: "hp:source" }}
-</div>
+  </div>
+</footer>

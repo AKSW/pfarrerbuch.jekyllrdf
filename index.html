@@ -3,8 +3,6 @@ layout: default
 rdf_prefix_path: _data/prefixes.sparql
 ---
 
-<h1>Pfarrerbuch Sachsen</h1>
-
 <h2>Orte</h2>
 <div>
 {% capture placeQuery %}
@@ -19,7 +17,7 @@ select ?ort ?label {
 {% assign ort = placeResult.ort %}
 {% assign ortsname = placeResult.label %}
 <li>
-<a href="{{ ort.page_url | prepend: site.baseurl | append: ".html" }}">{{ ortsname }}</a>
+<a href="{{ ort.render_path | prepend: site.baseurl }}">{{ ortsname }}</a>
 </li>
 {% endfor %}
 </ul>
