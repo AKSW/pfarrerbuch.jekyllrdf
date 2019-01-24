@@ -11,7 +11,7 @@ rdf_prefix_path: _data/prefixes.sparql
 <div class="card">
   <div class="card-header">{{ "<http://pfarrerbuch.aksw.org/About>" | rdf_property: "rdfs:label", "de" }}</div>
   <div class="card-body">
-  {{ "<http://pfarrerbuch.aksw.org/About>" | rdf_property: "site:content" }}
+  {{ "<http://pfarrerbuch.aksw.org/About>" | rdf_property: "site:content" | markdownify }}
   </div>
 </div>
 
