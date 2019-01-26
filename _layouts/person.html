@@ -33,10 +33,12 @@ This is a Person
 
 <h3>Stellen</h3>
 <div>
-{% assign positions = page.rdf | rdf_property: "hp:hasPosition", nil, true %}
-{% for position in positions %}
+{% assign position_query = "select ?position ?reif { ?resourceUri hp:hasPosition ?position . optional {?reif rdf:subject ?resourceUri; rdf:predicate hp:hasPosition ; rdf:object ?position } }" %}
+{% assign positions = page.rdf | sparql_query: position_query %}
+{% for row in positions %}
+{% assign position = row.position %}
+{% assign position_reif = row.reif %}
 <div class="card">
-{% assign position_reif = position | rdf_inverse_property: "rdf:object" %}
 {% assign position_place = position | rdf_property: "hp:place" %}
 {% if position_place %}
 <div class="card-body">
