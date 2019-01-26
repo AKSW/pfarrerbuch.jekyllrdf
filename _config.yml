@@ -15,7 +15,7 @@ exclude: ["Gemfile", "Gemfile.lock", "package.json", "package-lock.json", "node_
 jekyll_rdf:
     baseiri: "http://pfarrerbuch.aksw.org"
     path: "sachsen.nt"
-    restriction: "SELECT ?resourceUri WHERE { ?resourceUri ?p ?o . FILTER regex(str(?resourceUri), 'http://pfarrerbuch.aksw.org')  }"
+    restriction: "SELECT ?resourceUri WHERE { ?resourceUri ?p ?o . FILTER regex(str(?resourceUri), '^http://pfarrerbuch.aksw.org')}"
     default_template: resource
     class_template_mappings:
         "http://xmlns.com/foaf/0.1/Person": "person"
