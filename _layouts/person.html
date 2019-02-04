@@ -7,6 +7,14 @@ This is a Person
 <h2>{{ page.rdf | rdf_property: "foaf:name" }}</h2>
 
 <dl>
+    {% assign father = page.rdf | rdf_property: "hp:father" %}
+    {% assign mother = page.rdf | rdf_property: "hp:mother" %}
+    {% assign birthplace = page.rdf | rdf_property: "hp:birthPlace" %}
+    {% assign placeOfBabtism = page.rdf | rdf_property: "hp:placeOfBabtism" %}
+    {% assign placeOfOrdination = page.rdf | rdf_property: "hp:placeOfOrdination" %}
+    {% assign placeOfDeath = page.rdf | rdf_property: "hp:placeOfDeath" %}
+    {% assign burialPlace = page.rdf | rdf_property: "hp:burialPlace" %}
+
     <dt>Vorname:</dt>
     <dd>{{ page.rdf | rdf_property: "foaf:firstName" }}</dd>
     <dt>Nachname:</dt>
@@ -14,21 +22,22 @@ This is a Person
     <dt>Namensvariante:</dt>
     <dd>{{ page.rdf | rdf_property: "hp:nameVariant" }}</dd>
     <dt>Mutter:</dt>
-    <dd>{{ page.rdf | rdf_property: "hp:mother" }}</dd>
+    <dd></dd>
+    <dd>{% include resource_link.html resource=mother %}</dd>
     <dt>Vater:</dt>
-    <dd>{{ page.rdf | rdf_property: "hp:father" }}</dd>
+    <dd>{% include resource_link.html resource=father %}</dd>
     <dt>Geburt:</dt>
-    <dd>{{ page.rdf | rdf_property: "hp:birthDate" | date: "%Y-%m-%d" }} in <em>{{ page.rdf | rdf_property: "hp:birthPlace" }}</em></dd>
+    <dd>{{ page.rdf | rdf_property: "hp:birthDate" | date: "%Y-%m-%d" }} {% include resource_link.html resource=birthplace prepend="in" %}</dd>
     <dt>Taufe:</dt>
-    <dd>{{ page.rdf | rdf_property: "hp:dayOfBabtism" | date: "%Y-%m-%d" }} in <em>{{ page.rdf | rdf_property: "hp:placeOfBabtism" }}</em></dd>
+    <dd>{{ page.rdf | rdf_property: "hp:dayOfBabtism" | date: "%Y-%m-%d" }} {% include resource_link.html resource=placeOfBabtism prepend="in" %}</dd>
     <dt>Ordination:</dt>
-    <dd>{{ page.rdf | rdf_property: "hp:dateOfOrdination" | date: "%Y-%m-%d" }} in <em>{{ page.rdf | rdf_property: "hp:placeOfOrdination" }}</em></dd>
+    <dd>{{ page.rdf | rdf_property: "hp:dateOfOrdination" | date: "%Y-%m-%d" }} {% include resource_link.html resource=placeOfOrdination prepend="in" %}</dd>
     <dt>Emeritierung:</dt>
     <dd>{{ page.rdf | rdf_property: "hp:dateOfRetirement" | date: "%Y-%m-%d" }}</dd>
     <dt>Tod:</dt>
-    <dd>{{ page.rdf | rdf_property: "hp:dateOfDeath" | date: "%Y-%m-%d" }} in <em>{{ page.rdf | rdf_property: "hp:placeOfDeath" }}</em></dd>
+    <dd>{{ page.rdf | rdf_property: "hp:dateOfDeath" | date: "%Y-%m-%d" }} {% include resource_link.html resource=placeOfDeath prepend="in" %}</dd>
     <dt>Bestattung:</dt>
-    <dd>{{ page.rdf | rdf_property: "hp:dayOfFuneral" | date: "%Y-%m-%d" }} in <em>{{ page.rdf | rdf_property: "hp:burialPlace" }}</em></dd>
+    <dd>{{ page.rdf | rdf_property: "hp:dayOfFuneral" | date: "%Y-%m-%d" }} {% include resource_link.html resource=burialPlace prepend="in" %}</dd>
 </dl>
 
 <h3>Stellen</h3>
