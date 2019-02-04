@@ -1,0 +1,10 @@
+{% if include.resource %}
+{% if include.prepend %}
+{{ include.prepend }}
+{% endif %}
+{% if include.resource.statements_as_subject.first %}
+<a href="{{ include.resource.render_path | prepend: site.baseurl }}">{{ include.resource | rdf_property: "rdfs:label" }}</a>
+{% else %}
+<em>{{ include.resource }}</em>
+{% endif %}
+{% endif %}
